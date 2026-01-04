@@ -1,0 +1,4 @@
+__pycache__
+fcc_fastapi/
+.env
+.vscode
