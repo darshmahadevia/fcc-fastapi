@@ -1,16 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine
-from . import models
 from .routers import post, user, auth, vote
 
-
-models.Base.metadata.create_all(bind=engine)
 
 # password for postgress = password
 app = FastAPI()
 
-origins = ['*']
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
