@@ -13,7 +13,7 @@ router = APIRouter(prefix="/posts", tags=["posts"])
 # @router.get("/")
 def root(
     db: Session = Depends(get_db),
-    current_user: int = Depends(oauth2.get_current_user),
+    current_user: models.User = Depends(oauth2.get_current_user_optional),
     limit: int = 10,
     skip: int = 0,
     search: Optional[str] = "",
@@ -82,7 +82,7 @@ def post_req(
 def get_posts(
     id: int,
     db: Session = Depends(get_db),
-    current_user: int = Depends(oauth2.get_current_user),
+    current_user: models.User = Depends(oauth2.get_current_user_optional),
 ):
 
     # curr.execute("""SELECT * FROM posts WHERE id= %s""", (id,))
