@@ -112,12 +112,7 @@ export function Feed() {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             <div className="flex items-center gap-2">
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <TrendingUp className="h-5 w-5 text-primary" />
-              </motion.div>
+              <TrendingUp className="h-5 w-5 text-primary" />
               <h1 className="text-2xl font-bold tracking-tight">
                 {feedFilter === 'my-posts' ? 'My Posts' : 'Your Feed'}
               </h1>
@@ -170,20 +165,15 @@ export function Feed() {
           )}
           
           {/* Search */}
-          <motion.div 
-            className={`relative ${isAuthenticated ? 'sm:max-w-xs flex-1' : 'max-w-lg'}`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.1 }}
-          >
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search posts by title or content..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-11 h-11 bg-white/70 dark:bg-slate-800/50 backdrop-blur-2xl border-white/40 dark:border-white/15 focus:bg-white/90 dark:focus:bg-slate-800/70 focus:border-primary/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.3)_inset] dark:shadow-[0_2px_10px_rgba(0,0,0,0.15),0_1px_0_rgba(255,255,255,0.05)_inset] transition-all rounded-xl"
-          />
-        </motion.div>
+          <div className={`relative ${isAuthenticated ? 'sm:max-w-xs flex-1' : 'max-w-lg'}`}>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+            <Input
+              placeholder="Search posts..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-10"
+            />
+          </div>
         </div>
       </motion.div>
 
@@ -197,12 +187,7 @@ export function Feed() {
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <motion.div
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Sparkles className="h-4 w-4 text-primary" />
-            </motion.div>
+            <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm text-muted-foreground">
               <motion.span 
                 className="font-medium text-foreground"

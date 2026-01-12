@@ -94,13 +94,10 @@ function GuestRoute({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-// Page transition wrapper - simple fade without exit to prevent black screen
+// Page transition wrapper - simple fade
 const pageVariants = {
   initial: { opacity: 0 },
-  enter: { 
-    opacity: 1,
-    transition: { duration: 0.2, ease: "easeOut" as const }
-  },
+  enter: { opacity: 1 },
 } as const;
 
 function AnimatedRoutes() {
