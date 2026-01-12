@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { Layout } from '@/components/layout';
 import {
@@ -94,25 +94,9 @@ function GuestRoute({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-// Page transition wrapper - simple fade
-const pageVariants = {
-  initial: { opacity: 0 },
-  enter: { opacity: 1 },
-} as const;
-
 function AnimatedRoutes() {
-  const location = useLocation();
-  
   return (
-    <AnimatePresence mode="popLayout">
-      <motion.div
-        key={location.pathname}
-        variants={pageVariants}
-        initial="initial"
-        animate="enter"
-        style={{ width: '100%' }}
-      >
-        <Routes location={location}>
+        <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Landing />} />
             <Route path="feed" element={<Feed />} />
@@ -144,8 +128,6 @@ function AnimatedRoutes() {
             />
           </Route>
         </Routes>
-      </motion.div>
-    </AnimatePresence>
   );
 }
 
