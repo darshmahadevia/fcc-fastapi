@@ -99,9 +99,9 @@ const pageVariants = {
   initial: { opacity: 0 },
   enter: { 
     opacity: 1,
-    transition: { duration: 0.2, ease: "easeOut" }
+    transition: { duration: 0.2, ease: "easeOut" as const }
   },
-};
+} as const;
 
 function AnimatedRoutes() {
   const location = useLocation();
