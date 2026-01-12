@@ -331,7 +331,7 @@ export function Landing() {
       <section className="relative pt-12">
         <div className="container mx-auto max-w-6xl px-4 py-24">
           <motion.div 
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/80 p-12 md:p-16 text-center"
+            className="relative overflow-hidden rounded-3xl bg-primary/20 dark:bg-primary/15 backdrop-blur-2xl backdrop-saturate-200 border border-primary/30 dark:border-primary/20 p-12 md:p-16 text-center shadow-[0_8px_40px_rgba(0,0,0,0.1),0_1px_0_rgba(255,255,255,0.2)_inset] dark:shadow-[0_8px_40px_rgba(0,0,0,0.3),0_1px_0_rgba(255,255,255,0.05)_inset]"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -340,7 +340,7 @@ export function Landing() {
             {/* Background decoration */}
             <div className="absolute inset-0 -z-10">
               <motion.div 
-                className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+                className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
                 animate={{ 
                   scale: [1, 1.2, 1],
                   x: [0, 20, 0],
@@ -348,7 +348,7 @@ export function Landing() {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.div 
-                className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+                className="absolute bottom-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
                 animate={{ 
                   scale: [1, 1.3, 1],
                   y: [0, -20, 0],
@@ -358,7 +358,7 @@ export function Landing() {
             </div>
 
             <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4"
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -367,7 +367,7 @@ export function Landing() {
               Ready to start sharing?
             </motion.h2>
             <motion.p 
-              className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto"
+              className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -390,7 +390,6 @@ export function Landing() {
                   >
                     <Button
                       size="lg"
-                      variant="secondary"
                       className="gap-2 px-8 h-12 text-base"
                     >
                       View Posts
@@ -406,7 +405,6 @@ export function Landing() {
                   >
                     <Button
                       size="lg"
-                      variant="secondary"
                       className="gap-2 px-8 h-12 text-base"
                     >
                       Create Your Account

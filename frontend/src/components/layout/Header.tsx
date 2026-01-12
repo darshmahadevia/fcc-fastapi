@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { LogOut, User, Moon, Sun, Rss, Home, FileText } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 export function Header() {
@@ -86,14 +86,30 @@ export function Header() {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // Scroll-based effects
+  const { scrollY } = useScroll();
+  const headerPadding = useTransform(scrollY, [0, 100], [12, 0]);
+  const headerScale = useTransform(scrollY, [0, 100], [0.98, 1]);
+
   return (
     <motion.header 
-      className="sticky top-0 z-50 w-full border-b border-white/20 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl backdrop-saturate-200 shadow-[0_4px_30px_rgba(0,0,0,0.1),0_1px_0_rgba(255,255,255,0.2)_inset] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3),0_1px_0_rgba(255,255,255,0.05)_inset]"
+      className="sticky top-0 z-50 w-full"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+      {/* Spacer that shrinks on scroll */}
+      <motion.div 
+        className="bg-transparent"
+        style={{ height: headerPadding }}
+      />
+      
+      {/* Actual header bar */}
+      <motion.div 
+        className="mx-2 sm:mx-4 rounded-2xl border border-white/20 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl backdrop-saturate-200 shadow-[0_4px_30px_rgba(0,0,0,0.1),0_1px_0_rgba(255,255,255,0.2)_inset] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3),0_1px_0_rgba(255,255,255,0.05)_inset]"
+        style={{ scale: headerScale }}
+      >
+        <div className="container mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         {/* Logo & Nav */}
         <div className="flex items-center gap-8">
           <Link to="/" className="flex items-center gap-2.5 group">
@@ -122,8 +138,8 @@ export function Header() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    'gap-2 text-muted-foreground hover:text-foreground',
-                    isActive('/') && 'text-foreground bg-accent'
+                    'gap-2 text-muted-foreground hover:text-foreground hover:bg-white/50 dark:hover:bg-white/10',
+                    isActive('/') && 'text-foreground bg-white/60 dark:bg-white/15 backdrop-blur-sm'
                   )}
                 >
                   <Home className="h-4 w-4" />
@@ -137,8 +153,8 @@ export function Header() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    'gap-2 text-muted-foreground hover:text-foreground',
-                    isActive('/feed') && 'text-foreground bg-accent'
+                    'gap-2 text-muted-foreground hover:text-foreground hover:bg-white/50 dark:hover:bg-white/10',
+                    isActive('/feed') && 'text-foreground bg-white/60 dark:bg-white/15 backdrop-blur-sm'
                   )}
                 >
                   <Rss className="h-4 w-4" />
@@ -253,7 +269,14 @@ export function Header() {
             </div>
           )}
         </nav>
-      </div>
+        </div>
+      </motion.div>
+      
+      {/* Bottom spacer */}
+      <motion.div 
+        className="bg-transparent"
+        style={{ height: headerPadding }}
+      />
     </motion.header>
   );
 }
