@@ -1,4 +1,4 @@
-# FreeCodeCamp FastAPI
+# Simple BlogPost page
 
 A FastAPI REST API project with PostgreSQL, Alembic migrations, and JWT auth.
 
